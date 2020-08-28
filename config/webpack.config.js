@@ -1,7 +1,10 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HMR = require('webpack').HotModuleReplacementPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const resolve = dir => path.resolve(__dirname, dir);
+const resolve = dir => path.resolve(__dirname, '../', dir);
 
 module.exports = {
     entry: {
@@ -10,6 +13,14 @@ module.exports = {
     output: {
         filename: "[name][hash].js",
         path: resolve('dist'),
+        chunkFilename: "[name][chunkhash].js"
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', ".js", ".jsx"],
+        alias: {
+            "@": resolve("src")
+        },
+
     },
     devServer: {
         host: 'localhost',
@@ -24,26 +35,29 @@ module.exports = {
                 loaders: ['babel-loader', 'awesome-typescript-loader']
             },
             {
-                test: /\.css$/,
-                include: resolve("src"),
-                use: ["style-loader", "css-loader", "postcss-loader"]
-            },
-            {
-                test: /\.scss$/,
+                test: /\.(sc|sa|c)ss$/,
                 include: resolve("src"),
                 use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader"
-                }, {
-                    loader: "sass-loader"
-                }, {
-                    loader: "postcss-loader"
-                }]
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: "css/",
+                            hmr: true
+                        }
+                    },
+                    {
+                        loader: "css-loader"
+                    },
+                    {
+                        loader: "sass-loader"
+                    },
+                    {
+                        loader: "postcss-loader"
+                    },
+                ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/,
-                include: path.resolve(__dirname, "./src"),
+                include: resolve("src"),
                 use: [{
                     loader: "url-loader",
                     options: {
@@ -56,7 +70,11 @@ module.exports = {
         ]
 
     },
-    plugin: [
-        new CleanWebpackPlugin()
+    plugins: [
+        new HMR(),
+        new HtmlWebpackPlugin({
+            template: resolve('public/index.html')
+        }),
+        new CleanWebpackPlugin(),
     ]
 }

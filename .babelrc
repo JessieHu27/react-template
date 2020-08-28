@@ -1,0 +1,19 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "chrome": "60",
+                    "safari": "10.0",
+                    "android": "4.0",
+                    "ios": "7.0"
+                },
+                "useBuiltIns": "usage",
+                "corejs": 3
+            }
+        ],
+        "@babel/preset-react"
+    ],
+    "plugins": ["@babel/syntax-dynamic-import"]
+}

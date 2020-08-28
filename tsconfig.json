@@ -9,7 +9,7 @@
         "checkJs": false,
         "jsx": "react",
         "outDir": "./dist",
-        //"rootDir": "./src",
+        "rootDir": "./src",
         "removeComments": true,
         "noEmit": true,
         "pretty": true,
@@ -19,7 +19,7 @@
         "esModuleInterop": true,
         "importHelpers": true,
         "sourceMap": true,
-        "baseUrl": ".", 
+        "baseUrl": "./", 
         "paths": { 
             "@/*": [
                 "src/*"
