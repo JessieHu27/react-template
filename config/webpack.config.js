@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const resolve = dir => path.resolve(__dirname, '../', dir);
 
+console.log(process.env.NODE_ENV)
 module.exports = {
     entry: {
         index: './src/index.tsx'
@@ -40,8 +41,8 @@ module.exports = {
                 use: [{
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            publicPath: "css/",
-                            hmr: true
+                            publicPath: "css",
+                            hmr: process.env.NODE_ENV === 'dev'
                         }
                     },
                     {
@@ -76,5 +77,10 @@ module.exports = {
             template: resolve('public/index.html')
         }),
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'css-[hash:8].css',
+            chunkFilename: '[name].css',
+            ignoreOrder: false
+        })
     ]
 }
