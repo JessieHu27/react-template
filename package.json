@@ -8,7 +8,7 @@
     "eslint": "eslint --ext .ts,.tsx src/ --fix",
     "stylelint": "stylelint --fix \"src/**/*.scss\" --syntax scss",
     "prettier": "prettier -c --write \"**/*\"",
-    "lint": "npm run eslint && npm run stylelint && npm run pretter",
+    "lint": "npm run eslint && npm run stylelint && npm run prettier",
     "dev": "cross-env NODE_ENV='development' webpack-dev-server --config ./config/webpack.dev.js --color --progress",
     "build": "cross-env NODE_ENV='production' webpack --config ./config/webpack.prod.js --color --progress"
   },
@@ -72,13 +72,12 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.0.9"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "config": {
-    "husky": {
-      "hooks": {
-        "pre-commit": "npm run lint",
-        "commit-msg": "validate-commit-msg"
-      }
-    },
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
