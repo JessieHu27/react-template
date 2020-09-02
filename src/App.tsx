@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-export default () => {
-    console.log(process.env.NODE_ENV)
-    return (<h1>222</h1>)
-}
+const Main = () => {
+    return <h1>Main</h1>;
+};
+export default Main;

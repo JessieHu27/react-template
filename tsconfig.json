@@ -1,37 +1,29 @@
 {
-    "compilerOptions": {
-        "module": "es2015",
-        "noImplicitAny": false, // 默认不带类型的就为 any
-        "emitDecoratorMetadata": true, // 允许使用装饰器的相关功能
-        "experimentalDecorators": true, // 同上
-        "target": "es5",
-        "allowJs": true,
-        "checkJs": false,
-        "jsx": "react",
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "removeComments": true,
-        "noEmit": true,
-        "pretty": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "importHelpers": true,
-        "sourceMap": true,
-        "baseUrl": "./", 
-        "paths": { 
-            "@/*": [
-                "src/*"
-            ],
-        }
-    },
-    "include": [
-        "./src"
-    ],
-    "exclude": [
-        "node_modules",
-        "tests",
-    ]
-
+  "compilerOptions": {
+    "module": "es2015",
+    "noImplicitAny": false, // 默认不带类型的就为 any
+    "emitDecoratorMetadata": true, // 允许使用装饰器的相关功能
+    "experimentalDecorators": true, // 同上
+    "target": "es5",
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": true,
+    "noEmit": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules", "tests"]
 }
